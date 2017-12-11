@@ -1,0 +1,10 @@
+#
+#About: This will install datadog-agent
+#
+
+---
+- hosts: servers
+  become: yes
+  user: ec2-user
+  roles:
+     - {role: datadog-agent }
