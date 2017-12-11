@@ -13,8 +13,8 @@ If it is compiled, you should see something like this:</br></br>
 --with-http_stub_status_module 
 
 It is compiled by default on most distributions so, in order to enable Nginx status page the next step is editing nginx.conf. Find your nginx.conf file, it may be at one of this locations.
-/usr/local/nagios/etc/nginx.conf</br></br>
-/etc/nginx/nginx.conf
+/usr/local/nagios/etc/nginx.conf</br>
+/etc/nginx/nginx.conf</br>
 /etc/nginx/sites-enabled/default</br>
 
 Edit the configuration file and add the below block of code.
