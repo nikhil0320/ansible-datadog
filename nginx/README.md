@@ -15,13 +15,12 @@ It is compiled by default on most distributions so, in order to enable Nginx sta
 /etc/nginx/nginx.conf
 /etc/nginx/sites-enabled/default
 Edit the configuration file and add the below block of code.
-location /nginx_status {
-# Turn on nginx status page
-stub_status on;
-# Do not log access entries for status page
-access_log off;
 
+inside the servers block add below code:
+
+location /nginx_status {
+stub_status on;
+access_log off;
 allow 127.0.0.1;
-# Deny the rest of the connections
 deny all;
 }
