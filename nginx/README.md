@@ -20,7 +20,7 @@ location /nginx_status {
 stub_status on;
 # Do not log access entries for status page
 access_log off;
-# Only allow access from 192.168.1.105
+
 allow 127.0.0.1;
 # Deny the rest of the connections
 deny all;
