@@ -1,11 +1,27 @@
-This is the playbook to configure the datadog to moniter the tomcat server.
+This is the playbook to configure the datadog to moniter the nginx server.
 1.Run the playbook to install datadog .
-2.Run the playbook to configure the tomcat.
-3.Variables:
-  JMX_port:It is port in which the app server sent the metrics to the particular port called jmx port
+2.Run the playbook to configure the nginx
 
-4.create a file bin/setenv.sh in the tomcat server and to enable jmxromote.port:copy the below code and execute the setenv.sh file and restart the tomcat sevrer and restart the datadog-agent
-
-JAVA_OPTS="-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=9999 -Dcom.sun.management.jmxremote.rmi.port=9998 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false "
+Make sure that: 
  
-  
+  We have to Enable the mod_status on your Nginx server, All these changes are made in nginx configuration file itself.
+HttpStubStatusModule is the module that does all the metrics, so, you need to know if it is compiled or not. You can check this out using this command:
+nginx -V 2>&1 | sed 's,--,n--,g' | grep stub_status
+If it is compiled, you should see something like this:
+--with-http_stub_status_module 
+
+It is compiled by default on most distributions so, in order to enable Nginx status page the next step is editing nginx.conf. Find your nginx.conf file, it may be at one of this locations.
+/usr/local/nagios/etc/nginx.conf
+/etc/nginx/nginx.conf
+/etc/nginx/sites-enabled/default
+Edit the configuration file and add the below block of code.
+location /nginx_status {
+# Turn on nginx status page
+stub_status on;
+# Do not log access entries for status page
+access_log off;
+# Only allow access from 192.168.1.105
+allow 127.0.0.1;
+# Deny the rest of the connections
+deny all;
+}
