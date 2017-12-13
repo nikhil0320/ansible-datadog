@@ -1,0 +1,5 @@
+---
+- name: copy mogod config
+  template: src=mongo.yaml.j2 dest=/etc/dd-agent/conf.d/mongo.yaml
+- name: restart datadog
+  action: service name=datadog-agent state=restarted
