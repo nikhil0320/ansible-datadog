@@ -4,15 +4,17 @@ This is the playbook to configure the datadog to moniter the nginx server.
 
 Make sure that: 
  
-  We have to Enable the mod_status on your Nginx server, All these changes are made in nginx configuration file itself.
-HttpStubStatusModule is the module that does all the metrics, so, you need to know if it is compiled or not. 
+  We have to Enable the mod_status on your Nginx server, 
+  
+  HttpStubStatusModule is the module that enable the module to read all the metrics, so, you need to know if it is enabled  or not. 
 
 You can check this out using this command:
 nginx -V 2>&1 | sed 's,--,n--,g' | grep stub_status</br>
+
 If it is compiled, you should see something like this:</br></br>
 --with-http_stub_status_module 
 
-It is compiled by default on most distributions so, in order to enable Nginx status page the next step is editing nginx.conf. Find your nginx.conf file, it may be at one of this locations.
+It is enabled by default on most distributions so, in order to enable Nginx status page the next step is editing nginx.conf. Find your nginx.conf file, it may be at one of this locations.
 /usr/local/nagios/etc/nginx.conf</br>
 /etc/nginx/nginx.conf</br>
 /etc/nginx/sites-enabled/default</br>
