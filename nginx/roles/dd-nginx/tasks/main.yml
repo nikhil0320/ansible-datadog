@@ -1,3 +1,0 @@
----
-- name: copy nginx config
-  template: src=nginx.yaml.j2 dest=/etc/dd-agent/conf.d/nginx.yaml
